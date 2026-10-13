@@ -1,0 +1,15 @@
+# DSH bundle profile patch.
+#
+# 安装（一行搞定，让 agent 执行）：
+#   plugin_manager({ action: "install_bundle",
+#                    target: "C:\\Users\\lishuo\\Documents\\deepseek-harness\\default-workspace\\dsh-gowin" })
+#
+# 它会把两处都写好：
+#   - profile package.json → dependencies:  "@local/dsh-gowin": "link:C:/…/dsh-gowin"
+#   - profile package.json → dsh.profile.bundles:  "@local/dsh-gowin"（追加到末尾）
+#
+# `id`   = Cordis 插件 id（见 index.js 的 `export const name`）
+# `name` = npm 包名（安装后从 node_modules 解析）
+- insert:
+    - id: gowin
+      name: "@local/dsh-gowin"

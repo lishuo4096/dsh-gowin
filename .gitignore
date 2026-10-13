@@ -1,0 +1,15 @@
+# 依赖（本插件刻意零依赖，这里只是兜底）
+node_modules/
+
+# 日志 / 临时产物
+*.log
+dump-*.txt
+npm-debug.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

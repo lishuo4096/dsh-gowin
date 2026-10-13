@@ -12,12 +12,28 @@
 
 ## 一、安装
 
+**从 GitHub 装**
+
+```sh
+cd ~/.dsh/profiles/<你的 profile>
+pnpm add github:lishuo4096/dsh-gowin
+```
+
+再把 `"@local/dsh-gowin"` 追加进同目录 `package.json` 的 `dsh.profile.bundles`，**新开一个会话**
+即可看到 `gowin_*` 工具与 `gowin-fpga` 技能。
+
+> 已实测：`pnpm add github:lishuo4096/dsh-gowin` 装出 `@local/dsh-gowin 0.1.0`，
+> `dsh.bundle` 指向 `./cordis.patch.yml`，模块加载后注册 15 个工具 + 1 个 skill provider。
+> 装出来的目录只有运行时需要的文件（`package.json` 的 `files` 字段把自测脚本挡在外面）。
+
+**本地开发（改代码时用 link）**
+
 ```js
-plugin_manager({ action: 'install_bundle', target: 'C:/Users/lishuo/Documents/deepseek-harness/default-workspace/dsh-gowin' })
+plugin_manager({ action: 'install_bundle', target: 'C:/path/to/dsh-gowin' })
 ```
 
 `install_bundle` 会同时把 `"@local/dsh-gowin": "link:<该目录>"` 写进 profile 的 `dependencies`
-和 `dsh.profile.bundles`。装完**新开一个会话**即可看到 `gowin_*` 工具与 `gowin-fpga` 技能。
+和 `dsh.profile.bundles`，改完代码重启会话即生效。
 
 卸载：`plugin_manager({ action: 'remove_bundle', target: '@local/dsh-gowin' })`。
 
